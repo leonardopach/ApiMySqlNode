@@ -25,7 +25,7 @@ export const addInfo = (req, res) => {
 };
 
 export const updateInfo = (req, res) => {
-    const id = req.params.id
+    const id = req.params.id;
     const nome = req.body.nome;
     const idade = req.body.idade;
     const apelido = req.body.apelido;
@@ -36,5 +36,17 @@ export const updateInfo = (req, res) => {
         if (err) return res.json(err);
 
         return res.status(200).json('Atualizado com sucesso');
+    });
+};
+
+export const deteleInfo = (_, res) => {
+    const id = _.params.id;
+
+    const sql = `DELETE FROM cadastro WHERE id = '${id}'`;
+
+    db.query(sql, (err) => {
+        if (err) return console.log(err);
+
+        return res.status(200).json('Foi deletado com Sucesso');
     });
 };
