@@ -20,6 +20,21 @@ export const addInfo = (req, res) => {
     db.query(sql, (err) => {
         if (err) return res.json(err);
 
-        res.status(200).json('Enviado com sucesso');
+        return res.status(200).json('Enviado com sucesso');
+    });
+};
+
+export const updateInfo = (req, res) => {
+    const id = req.params.id
+    const nome = req.body.nome;
+    const idade = req.body.idade;
+    const apelido = req.body.apelido;
+
+    const sql = `UPDATE cadastro SET nome ='${nome}' , idade ='${idade}' , apelido = '${apelido}' WHERE id = ${id}`;
+
+    db.query(sql, (err) => {
+        if (err) return res.json(err);
+
+        return res.status(200).json('Atualizado com sucesso');
     });
 };
